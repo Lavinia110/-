@@ -3,19 +3,19 @@
 using namespace std; 
 int main()
 {
-	int year,month,day,T=0,week;//¶¨ÒåÊäÈë±äÁ¿£»
-	int  leapyear[12] = {31,29,31,30,31,30,31,31,30,31,30,31};//ÈòÄêÃ¿ÔÂÌìÊı£»
-	int commonyear[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };//Æ½ÄêÃ¿ÔÂÌìÊı£»
-	
-	cout << "ÊäÈëÄêÔÂÈÕ£º" << endl;
-	cin >> year>> month>> day;
+	int year,month,day,T=0,week;//å®šä¹‰è¾“å…¥å˜é‡ï¼›
+	int  leapyear[12] = {31,29,31,30,31,30,31,31,30,31,30,31};//é—°å¹´æ¯æœˆå¤©æ•°ï¼›
+	int commonyear[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };//å¹³å¹´æ¯æœˆå¤©æ•°ï¼›
+	char c;
+	cout << "è¾“å…¥å¹´æœˆæ—¥ï¼š(2000-9-24)" << endl;
+	cin >> year>>c>>month>>c>> day;
 	int m = month - 1;
-	cout << year<< "-" << month << "-" << day << endl;//ÏÔÊ¾ÊäÈëµÄÈÕÆÚ£»
-	if ((month <= 12) && (month >= 1)) //ÑéÖ¤ÊäÈëÈÕÆÚÊÇ·ñÕıÈ·£»
+	cout << year<< "-" << month << "-" << day << endl;//æ˜¾ç¤ºè¾“å…¥çš„æ—¥æœŸï¼›
+	if ((month <= 12) && (month >= 1)) //éªŒè¯è¾“å…¥æ—¥æœŸæ˜¯å¦æ­£ç¡®ï¼›
 	{
-		if ((year % 400 == 0) || (year % 4 == 0) && (year % 100 != 0))//Èç¹ûÊÇÈòÄêÔòÔËĞĞ£»
+		if ((year % 400 == 0) || (year % 4 == 0) && (year % 100 != 0))//å¦‚æœæ˜¯é—°å¹´åˆ™è¿è¡Œï¼›
 		{
-			if (day <= leapyear[m])//ÇÒÊäÈëµÄÈÕÆÚ²»³¬¹ıÌìÊıÕı³£Öµ£»
+			if (day <= leapyear[m])//ä¸”è¾“å…¥çš„æ—¥æœŸä¸è¶…è¿‡å¤©æ•°æ­£å¸¸å€¼ï¼›
 			{
 				for (int i = 0; i < month; i++)
 					T = T + leapyear[i];
@@ -23,9 +23,9 @@ int main()
 					week = T / 7 + 1;
 				else
 					week = T / 7;
-				cout << "µÚ" << T << "Ìì" << "ÖÜ" << week << endl;
+				cout << "ç¬¬" << T << "å¤©" << "å‘¨" << week << endl;
 			}
-			else cout << "ÊäÈëÈÕÆÚ²»ÕıÈ·" << endl;
+			else cout << "è¾“å…¥æ—¥æœŸä¸æ­£ç¡®" << endl;
 		}
 		else
 		{
@@ -37,11 +37,11 @@ int main()
 					week = T / 7 + 1;
 				else
 					week = T / 7;
-				cout << "µÚ" << T << "Ìì" << week << "ÖÜ" << endl;
+				cout << "ç¬¬" << T << "å¤©" << week << "å‘¨" << endl;
 			}
-			else cout << "ÊäÈëÈÕÆÚ²»ÕıÈ·" << endl;
+			else cout << "è¾“å…¥æ—¥æœŸä¸æ­£ç¡®" << endl;
 		}
-	//else cout << "ÊäÈëÈÕÆÚ²»ÕıÈ·" << endl;	
+	//else cout << "è¾“å…¥æ—¥æœŸä¸æ­£ç¡®" << endl;	
 	}
 	system("pause");
 	return 0;
