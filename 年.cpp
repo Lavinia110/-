@@ -17,8 +17,8 @@ int main()
 		{
 			if (day <= leapyear[m])//且输入的日期不超过天数正常值；
 			{
-				for (int i = 0; i < month; i++)
-					T = T + leapyear[i];
+				for (int i = 0; i < m; i++)
+					T = T + commonyear[i];
 				if (T % 7 != 0)
 					week = T / 7 + 1;
 				else
@@ -31,7 +31,7 @@ int main()
 		{
 			if (day <= commonyear[m])
 			{
-				for (int j = 0; j < month; j++)
+				for (int j = 0; j < m; j++)
 					T = T + leapyear[j];
 				if (T % 7 != 0)
 					week = T / 7 + 1;
