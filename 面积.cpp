@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
 	float a, b, c, i, S;
-	cout << "ÊäÈë£º" << endl;//printf("ÊäÈë£º");
+	cout << "è¾“å…¥ï¼š" << endl;//printf("è¾“å…¥");
 	cin >> a >> b >> c;//scanf_s("%f %f %f", &a, &b, &c);
 	
 	i = (a + b + c) / 2;
