@@ -1,0 +1,132 @@
+#pragma once
+class student
+{
+
+private:
+	int id;
+	char *name; //申请动态内存的信号
+
+public:
+	//1. 构造函数，析构函数
+
+	student(int id, const char *user_name);
+
+	student(const student &r);
+
+	~student();
+
+
+	//2. 普通函数
+	void display();
+};
+ 16:00:48
+--------------------
+
+ 16:00:54
+#include "student.h"
+#include <iostream>
+
+using namespace std;
+
+
+student::student(int id, const char *user_name)
+{
+	cout << "构造函数被调用" << endl;
+	this->id = id;
+
+	if (user_name!=NULL)
+	{
+		int len = strlen(user_name);
+
+		name = new char[len + 1];
+
+		strcpy(name, user_name);
+
+	}
+
+
+
+}
+
+student::student(const student & r)
+{
+	this->id = r.id;
+
+   // this->name = r.name;//浅拷贝<-----栈上操作
+
+	if (r.name!=NULL)//深度拷贝<---堆上操作
+	{
+		int len = strlen(r.name);
+
+		this->name = new char[len + 1];
+
+		strcpy(this->name, r.name);
+	}
+}
+
+
+student::~student()
+{
+	cout << "--析构函数被调用--" << endl;
+
+	delete[] name;
+}
+
+void student::display()
+{
+	cout << "学号id  = " << id << endl;
+
+	cout << "姓名name= " << name << endl;
+
+
+}
+
+ 16:01:02
+-----------------------
+
+ 16:01:10
+/*************************************************
+** 功能 : 浅拷贝-深拷贝代码演示  
+** 作者 : 
+** 版本 : 2019-10-29 / 19:18
+** 版权 : GNU General Public License(GNU GPL)
+/**************************************************/
+
+#include <iostream>
+#include <cstdlib>
+#include "student.h"
+
+
+using namespace std;
+
+
+
+/*----------------------------------*
+          Main Function
+*-----------------------------------*/
+
+int main()
+{
+	char *name = new char[20];
+
+	strcpy(name, "bill gates");
+	
+	student zhang(2019,name);
+
+	student wang = zhang;//调用系统默认的拷贝构造函数
+
+
+
+	zhang.display();
+
+	wang.display();
+
+
+
+
+
+	system("pause");
+	
+	return 0;
+}
+
