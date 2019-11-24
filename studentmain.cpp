@@ -1,53 +1,95 @@
 #include<iostream>
 using namespace std;
-#include"student.h"
-#pragma warning(disable:4996)
 #include<string>
-/***************主函数****************/
-int main()
+
+/*******School类********/
+class school
 {
-	student *S=new student[4];
-	char n[20];
-	char *name = new char[20];
-	cout << "Name:"; cin >> n;
-	strcpy(name, n);//Name
-
-	char i[20];
-	cout << "ID: "; cin >> i;//ID
-
-	int age;
-	cout << "Age:  "; cin >> age;
-
-	string ad;
-	cout << "Adress:"; cin >> ad;
-
-	//student S[2];//调用无参构造函数
-
-	S[2].stuin(name, i, age, ad);//普通函数获取学生信息
-	S[1] = S[2];
-	char *na = new char[20]; strcpy(na, "Amy");
-    student S3(na, i, 19, "dont");//调用有参构造函数
-    S[3] = S3;//拷贝构造函数
-	
-	S[1].display();//输出学生信息
-	S[2].display();
-	S[3].display();
-
-	cout << "修改学生信息" << endl;
-	cout << "是否修改信息，是（1），否（0）" << endl;
-	int t; cin >> t;
-	if (t != 0)
+private:
+	string college;
+public:
+	school();
+	~school();
+	school(string a)
 	{
-		cout << "输入学生姓名："; cin >> name;
-		for (int i = 1; i < 4; i++)
-		{
-			if (S[i].change(S[i], name) == 1)
-				break;
-			else continue;
-		}
+		this->college = a;
+		cout << "学校名字：" << college << endl;
+	}
+};
+
+school::school() {}
+school::~school() {}
+/**********date类*********/
+class date
+{
+private:
+	int year;
+	int month;
+	int day;
+public:
+	date();
+	~date();
+    date(int y,int m,int d)
+	{
+		this->year = y;
+		this->month = m;
+		this->day = d;
+	}
+void birth()const;//const函数实现输出出生日期和年龄；
+	
+};
+date::date() {}
+date::~date() {}
+void date::birth()const
+{
+	int O = 2019 - year;
+	cout << "出生日期：" << year <<"-"<< month <<"-"<< day << endl;
+	cout << O << "岁" << endl;
+}
+/*****student类*******/
+class student
+{
+private:
+	string name;
+	bool gender;
+	string id;
+	double GPA;
+	school S;
+	date D;
+public:
+	static int N;
+	student();
+	student(string Name, bool Gender, string Id, double Gpa, int y, int m, int d, string schoolname) : D(y, m, d), S(schoolname)//初始化学生信息；
+	{
+		this->name = Name;
+		this->gender = Gender;
+		this->id = Id;
+		this->GPA = Gpa;
+		cout << "Name:" << name << "  Gender:" << gender << "  ID:" << id << "  GPA:" << GPA << endl;
+		N = N + 1;
+		D.birth();
+		cout << endl;
 	}
 
-	system("pause");
-	return 0;
+	~student();
 
+};
+int student::N = 0;//静态数据成员的初始化；
+student::student() {}
+student::~student()
+{}
+
+/*******主函数*********/
+int main()
+{
+	int a=rand() % 4 + 0.1;
+	
+	student s1("tom",1,"001",a,2000,9,24,"SD");
+	int b= rand() % 4 + 0.1;
+	student s2("tommey", 0, "002", b, 2005, 7, 29, "SL");
+
+
+	cout << "共" <<student::N << "人" << endl;//输出人数
+	system("pause");
+     return 0;
 }
