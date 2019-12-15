@@ -1,64 +1,41 @@
 #include<iostream>
 using namespace std;
-class Location
+#include<math.h>
+class Shapes               //定义抽象基类
 {
 
-	
 public:
-	double x, y;
-	void move(double i,double j)            //移动对象坐标位置
+	virtual void display()=0//声明纯虚函数
 	{
-		x = i;
-		y = j;
-		x = x + 1;
-		y = y + 1;
-		cout << "(" << x << "," << y << ")" << endl;
+		cout << "Shapes" << endl;
 	}
-	
+
 };
-class Point:public Location
+class  Rectangle:public Shapes
 {
-public:
-	void move(double m,double n)
+	void display()
 	{
-		x = m; y = n;
-		x = x+x;
-		y = y+y;
-		cout << "(" << x << "," << y << ")" << endl;
-		Location::move(x, y);
+		cout << "Rectangle" << endl;
 	}
 };
-class Circle:public Point
+class Circle:public Shapes
 {
-public:
-	void draw(double a,double b)
+	void display()
 	{
-		x = a; y = b;
-		double t;
-		t = x;
-		x = y;
-		y = t;
-		cout << "(" << x << "," << y << ")" << endl;
-		Location::move(x,y);
-		Point::move(x, y);
+		cout << "Circle" << endl;
 	}
 };
 int main()
 {
-	Location L;
-	cout << "Location->move:";
-	L.move(1,2);
-	cout << endl << endl;
-	cout << "Point->move&Location->move:";
-	Point P;
-	P.move(1,2);
-
-	cout << endl << endl;
-	cout << "Circle->draw&Location->move&Point->move:";
+	Shapes *p;
+	Rectangle R;
 	Circle C;
-	C.draw(1,2);
 
+	p = &R;
+	p->display();
 
+	p = &C;
+	p->display();
 
 	system("pause");
 	return 0;
